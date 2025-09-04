@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.fredcodecrafts.minitodoapp.ui.list.ListFragment"
+        android:label="Todos"
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/action_list_to_add"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_list_to_detail"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.fredcodecrafts.minitodoapp.ui.add.AddFragment"
+        android:label="Add Todo"
+        tools:layout="@layout/fragment_add" />
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.fredcodecrafts.minitodoapp.ui.detail.DetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_detail" />
+</navigation>
