@@ -49,4 +49,3 @@ class DetailFragment : Fragment() {
         _binding = null
     }
 }
-

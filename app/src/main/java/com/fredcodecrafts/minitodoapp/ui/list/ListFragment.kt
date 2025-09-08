@@ -32,9 +32,22 @@ class ListFragment : Fragment() {
             findNavController().navigate(R.id.action_list_to_detail)
         },
         onDelete = { todo ->
-            showDeleteConfirmation(todo)
+            showDeleteConfirmation(todo) // panggil fungsi
         }
     )
+
+    private fun showDeleteConfirmation(todo: Todo) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Delete Todo")
+            .setMessage("Are you sure you want to delete \"${todo.title}\"?")
+            .setPositiveButton("Yes") { _, _ ->
+                viewModel.delete(todo)
+                Log.d(TAG, "Task deleted: ${todo.title} - ${todo.description}")
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,17 +71,6 @@ class ListFragment : Fragment() {
         binding.fabAdd.setOnClickListener {
             findNavController().navigate(R.id.action_list_to_add)
         }
-    }
-
-    private fun showDeleteConfirmation(todo: Todo) {
-        AlertDialog.Builder(requireContext())
-            .setTitle("Delete Todo")
-            .setMessage("Are you sure you want to delete \"${todo.title}\"?")
-            .setPositiveButton("Yes") { _, _ ->
-                viewModel.delete(todo)
-            }
-            .setNegativeButton("Cancel", null)
-            .show()
     }
 
     override fun onStart() {
