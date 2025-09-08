@@ -14,9 +14,6 @@ import androidx.navigation.fragment.findNavController
 import com.fredcodecrafts.minitodoapp.data.Todo
 import com.fredcodecrafts.minitodoapp.data.TodoViewModel
 import com.fredcodecrafts.minitodoapp.databinding.FragmentDetailBinding
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class DetailFragment : Fragment() {
 
@@ -83,7 +80,6 @@ class DetailFragment : Fragment() {
                 binding.etDetailTitle.setText(it.title)
                 binding.etDetailDesc.setText(it.description)
 
-                // Reset editing state ketika todo berubah
                 isEditing = false
                 updateSaveButtonState()
                 Log.d(TAG, "Todo loaded: ${it.title}")
@@ -131,7 +127,6 @@ class DetailFragment : Fragment() {
             viewModel.update(updatedTodo)
             Log.d(TAG, "Task updated: ${updatedTodo.title}")
 
-            // Update original values
             originalTitle = newTitle
             originalDescription = newDescription
             isEditing = false
@@ -147,7 +142,6 @@ class DetailFragment : Fragment() {
             .setTitle("Batal Edit")
             .setMessage("Perubahan yang belum disimpan akan hilang. Yakin ingin batal?")
             .setPositiveButton("Ya") { _, _ ->
-                // Restore original values
                 binding.etDetailTitle.setText(originalTitle)
                 binding.etDetailDesc.setText(originalDescription)
                 isEditing = false
@@ -162,7 +156,6 @@ class DetailFragment : Fragment() {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
-    // Lifecycle methods
     override fun onStart() {
         super.onStart()
         Log.d(TAG, "onStart")
