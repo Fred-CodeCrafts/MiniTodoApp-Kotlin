@@ -37,7 +37,7 @@ The app follows the **MVVM + Repository** architecture for better separation of 
 ## 🖥️ How to Run
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/yourusername/todo-app.git](https://github.com/Fred-CodeCrafts/MiniTodoApp-Kotlin.git)
+   git clone (https://github.com/Fred-CodeCrafts/MiniTodoApp-Kotlin.git)
 
 
 Open in Android Studio
