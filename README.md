@@ -36,3 +36,49 @@ The app follows the **MVVM + Repository** architecture for better separation of 
 ---
 
 ## 📂 Project Structure
+app/
+├── data/
+│ ├── Todo.kt # Data entity
+│ ├── TodoDao.kt # Data Access Object
+│ ├── TodoDatabase.kt # Room database
+│ └── TodoRepository.kt # Repository
+│
+├── ui/
+│ ├── MainActivity.kt # Activity hosting fragments
+│ ├── ListFragment.kt # Fragment for showing list
+│ ├── DetailFragment.kt # Fragment for adding/editing
+│ └── TodoAdapter.kt # RecyclerView adapter
+│
+├── viewmodel/
+│ └── TodoViewModel.kt # ViewModel
+│
+└── res/
+├── layout/ # XML layout files
+└── values/ # Strings, colors, themes
+
+
+---
+
+## 🖥️ How to Run
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/todo-app.git
+
+
+Open in Android Studio
+
+Sync Gradle and run on Emulator or Device
+
+🔍 Debugging Database
+
+To inspect the Room database:
+
+Run the app
+
+Open App Inspection in Android Studio
+
+View > Tool Windows > App Inspection
+
+Select Databases tab
+
+Browse and query the todo table
