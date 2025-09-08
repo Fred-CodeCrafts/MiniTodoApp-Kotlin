@@ -8,7 +8,6 @@ This app is created as part of a learning project.
 ## ✨ Features
 - Add new tasks to the list  
 - View all tasks in a list format  
-- Mark tasks as completed / not completed  
 - Delete tasks from the database  
 - Data is stored locally using **Room Database**  
 
