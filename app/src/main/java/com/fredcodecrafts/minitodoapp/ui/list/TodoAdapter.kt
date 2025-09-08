@@ -3,19 +3,15 @@ package com.fredcodecrafts.minitodoapp.ui.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fredcodecrafts.minitodoapp.R
 import com.fredcodecrafts.minitodoapp.data.Todo
-import android.widget.Button
-import android.util.Log
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
-
-
-
-/**
- * Very simple adapter; for production use DiffUtil/ListAdapter.
- */
 class TodoAdapter(
     private val onClick: (Todo) -> Unit,
     private val onDelete: (Todo) -> Unit
@@ -47,8 +43,9 @@ class TodoAdapter(
         private val onDelete: (Todo) -> Unit
     ) : RecyclerView.ViewHolder(itemView) {
         private val title: TextView = itemView.findViewById(R.id.tvTitle)
-        private val desc: TextView  = itemView.findViewById(R.id.tvDesc)
-        private val deleteBtn: Button = itemView.findViewById(R.id.btnDelete) // ✅ pakai Button biasa
+        private val desc: TextView = itemView.findViewById(R.id.tvDesc)
+        private val timestamp: TextView = itemView.findViewById(R.id.tvTimestamp)
+        private val deleteBtn: ImageButton = itemView.findViewById(R.id.btnDelete)
 
         private var current: Todo? = null
 
@@ -57,15 +54,15 @@ class TodoAdapter(
             deleteBtn.setOnClickListener { current?.let(onDelete) }
         }
 
-
         fun bind(todo: Todo) {
-            Log.d("TodoAdapter", "bind: ${todo.title}")
             current = todo
             title.text = todo.title
-            desc.text  = todo.description
+            desc.text = todo.description
+
+            // Format timestamp
+            val date = Date(todo.updatedAt)
+            val formatter = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
+            timestamp.text = "Diedit: ${formatter.format(date)}"
         }
     }
-
 }
-
-
