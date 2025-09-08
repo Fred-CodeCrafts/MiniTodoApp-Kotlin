@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fredcodecrafts.minitodoapp.R
 import com.fredcodecrafts.minitodoapp.data.Todo
-
+import android.util.Log
 /**
  * Very simple adapter; for production use DiffUtil/ListAdapter.
  */
@@ -48,6 +48,7 @@ class TodoAdapter(
         }
 
         fun bind(todo: Todo) {
+            Log.d("TodoAdapter", "bind: ${todo.title}")
             current = todo
             title.text = todo.title
             desc.text  = todo.description
