@@ -34,35 +34,10 @@ The app follows the **MVVM + Repository** architecture for better separation of 
   - Local persistence layer for storing To-Do items  
 
 ---
-
-## 📂 Project Structure
-app/
-├── data/
-│ ├── Todo.kt # Data entity
-│ ├── TodoDao.kt # Data Access Object
-│ ├── TodoDatabase.kt # Room database
-│ └── TodoRepository.kt # Repository
-│
-├── ui/
-│ ├── MainActivity.kt # Activity hosting fragments
-│ ├── ListFragment.kt # Fragment for showing list
-│ ├── DetailFragment.kt # Fragment for adding/editing
-│ └── TodoAdapter.kt # RecyclerView adapter
-│
-├── viewmodel/
-│ └── TodoViewModel.kt # ViewModel
-│
-└── res/
-├── layout/ # XML layout files
-└── values/ # Strings, colors, themes
-
-
----
-
 ## 🖥️ How to Run
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/todo-app.git
+   git clone [https://github.com/yourusername/todo-app.git](https://github.com/Fred-CodeCrafts/MiniTodoApp-Kotlin.git)
 
 
 Open in Android Studio
