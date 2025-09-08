@@ -1,59 +1,52 @@
 package com.fredcodecrafts.minitodoapp.ui.list
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fredcodecrafts.minitodoapp.R
+import com.fredcodecrafts.minitodoapp.data.Todo
 import com.fredcodecrafts.minitodoapp.data.TodoViewModel
 import com.fredcodecrafts.minitodoapp.databinding.FragmentListBinding
 
-/**
- * Shows list of Todos using RecyclerView.
- */
 class ListFragment : Fragment() {
-
-    private val TAG = "ListFragment"
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: TodoViewModel by activityViewModels()
 
-    private val adapter = TodoAdapter { todo ->
-        viewModel.selectTodo(todo)
-        findNavController().navigate(R.id.action_list_to_detail)
+    companion object {
+        private const val TAG = "ListFragment"
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.d(TAG, "onAttach")
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d(TAG, "onCreate")
-    }
+    private val adapter = TodoAdapter(
+        onClick = { todo ->
+            viewModel.selectTodo(todo)
+            findNavController().navigate(R.id.action_list_to_detail)
+        },
+        onDelete = { todo ->
+            showDeleteConfirmation(todo)
+        }
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Log.d(TAG, "onCreateView")
         _binding = FragmentListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(TAG, "onViewCreated")
 
         binding.todoRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.todoRecycler.adapter = adapter
@@ -65,6 +58,17 @@ class ListFragment : Fragment() {
         binding.fabAdd.setOnClickListener {
             findNavController().navigate(R.id.action_list_to_add)
         }
+    }
+
+    private fun showDeleteConfirmation(todo: Todo) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Delete Todo")
+            .setMessage("Are you sure you want to delete \"${todo.title}\"?")
+            .setPositiveButton("Yes") { _, _ ->
+                viewModel.delete(todo)
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 
     override fun onStart() {

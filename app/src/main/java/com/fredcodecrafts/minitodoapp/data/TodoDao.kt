@@ -11,4 +11,10 @@ interface TodoDao {
 
     @Query("SELECT * FROM todo_table ORDER BY id DESC")
     fun getAllTodos(): LiveData<List<Todo>>
+
+    @Delete
+    suspend fun delete(todo: Todo)
+
+    @Query("DELETE FROM todo_table WHERE id = :id")
+    suspend fun deleteById(id: Int)
 }
