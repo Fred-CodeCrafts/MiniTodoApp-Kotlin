@@ -9,6 +9,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.fredcodecrafts.minitodoapp.data.TodoViewModel
 import com.fredcodecrafts.minitodoapp.databinding.FragmentDetailBinding
+import androidx.appcompat.app.AlertDialog
+import com.fredcodecrafts.minitodoapp.data.Todo
+
 
 /**
  * Shows selected Todo details. Data pulled from shared ViewModel.
@@ -34,11 +37,16 @@ class DetailFragment : Fragment() {
                 binding.tvDetailDesc.text = it.description
             }
         }
+
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+
     }
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+
