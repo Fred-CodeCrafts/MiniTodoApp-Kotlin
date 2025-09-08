@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">MiniTodoApp</string>
-    <string name="add_todo">Add Todo</string>
-    <string name="title">Title</string>
-    <string name="description">Description</string>
-    <string name="save">Save</string>
-    <string name="back">Back</string>
+    <string name="app_name">Mini Todo App</string>
+    <string name="title">Judul</string>
+    <string name="description">Deskripsi</string>
+    <string name="save">Simpan</string>
+    <string name="add_todo">Tambah Todo</string>
+    <string name="back">Kembali</string>
+    <string name="delete_todo">Hapus todo</string>
 </resources>
